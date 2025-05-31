@@ -3,19 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>我们毕业啦 | 六年级6班</title>
-    <link href="https://fonts.loli.net/css?family=Open+Sans:400italic,700italic,700,400&subset=latin,latin-ext" rel="stylesheet">
+    <title>我们毕业啦！ | Wenxiao Web</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        :root {
-            --primary-color: #5e81ac;
-            --secondary-color: #88c0d0;
-            --accent-color: #bf616a;
-            --light-color: #e5e9f0;
-            --dark-color: #2e3440;
-            --gradient-start: #5e81ac;
-            --gradient-end: #88c0d0;
-        }
-        
+        /* 基础样式重置 */
         * {
             margin: 0;
             padding: 0;
@@ -23,247 +14,330 @@
         }
         
         body {
-            font-family: 'Open Sans', 'Helvetica Neue', sans-serif;
-            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
-            color: white;
+            font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
             min-height: 100vh;
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
+            justify-content: center;
             padding: 20px;
-            position: relative;
-            overflow-x: hidden;
         }
         
+        /* 容器样式 */
         .container {
-            max-width: 800px;
             width: 100%;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 40px;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
-            text-align: center;
-            position: relative;
+            max-width: 600px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
             overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
         }
         
-        .container::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 5px;
-            background: linear-gradient(90deg, var(--accent-color), var(--secondary-color));
+        /* 安全验证界面 */
+        #security-check {
+            padding: 40px 30px;
+            text-align: center;
         }
         
-        .header {
+        .security-header {
             margin-bottom: 30px;
-            position: relative;
+        }
+        
+        .lock-icon {
+            font-size: 3.5rem;
+            color: #4a6cf7;
+            margin-bottom: 15px;
         }
         
         h1 {
-            font-size: 3.5rem;
-            margin-bottom: 15px;
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-            position: relative;
-            display: inline-block;
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 10px;
         }
         
-        h1::after {
-            content: "";
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100px;
-            height: 4px;
-            background: var(--accent-color);
-            border-radius: 2px;
+        .security-content {
+            padding: 25px 20px;
+            background-color: #f8f9ff;
+            border-radius: 10px;
+            margin: 20px 0;
+            text-align: left;
+        }
+        
+        .security-content p {
+            margin-bottom: 15px;
+            font-size: 1rem;
+            color: #4a5568;
+        }
+        
+        .key-hint {
+            background: #edf2ff;
+            border: 1px solid #c5d3ff;
+            padding: 12px 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            font-family: monospace;
+            font-size: 0.95rem;
+            color: #4a6cf7;
+            text-align: center;
+        }
+        
+        .validation-status {
+            padding: 15px;
+            background: #f0f5ff;
+            border-radius: 8px;
+            margin: 20px 0;
+            font-size: 1rem;
+            color: #4a5568;
+        }
+        
+        .fa-spinner {
+            margin-right: 8px;
+            animation: spin 1s linear infinite;
+        }
+        
+        .security-footer {
+            margin-top: 30px;
+            font-size: 0.85rem;
+            color: #718096;
+        }
+        
+        /* 毕业内容界面 */
+        #graduation-content {
+            display: none;
+            padding: 40px 30px;
+        }
+        
+        .graduation-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .graduation-header h1 {
+            color: #2d3748;
+            font-size: 2rem;
+            margin-bottom: 10px;
         }
         
         .class-info {
-            font-size: 1.8rem;
-            font-weight: 700;
-            margin-bottom: 40px;
-            color: var(--light-color);
-            letter-spacing: 3px;
-            text-transform: uppercase;
-        }
-        
-        .content {
             font-size: 1.2rem;
-            line-height: 1.8;
-            margin: 30px 0;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-            background: rgba(255, 255, 255, 0.15);
+            color: #4a6cf7;
+            font-weight: 500;
+            margin-bottom: 25px;
+        }
+        
+        .memory-content {
             padding: 20px;
-            border-radius: 12px;
-            border-left: 4px solid var(--accent-color);
+            background: #f8f9ff;
+            border-radius: 10px;
+            margin-bottom: 30px;
         }
         
-        .decoration {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            margin: 40px 0;
+        .memory-content p {
+            margin-bottom: 15px;
+            color: #4a5568;
         }
         
-        .cap, .scroll {
-            width: 80px;
-            height: 80px;
-            background: var(--light-color);
-            border-radius: 50%;
+        .photo-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin: 25px 0;
+        }
+        
+        .photo-item {
+            background: #f0f5ff;
+            border-radius: 8px;
+            height: 120px;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
+            border: 1px solid #e2e8f0;
+            overflow: hidden;
         }
         
-        .cap:hover, .scroll:hover {
-            transform: translateY(-10px);
-        }
-        
-        .cap::before {
-            content: "🎓";
-            font-size: 40px;
-        }
-        
-        .scroll::before {
-            content: "📜";
-            font-size: 40px;
+        .photo-item i {
+            font-size: 2rem;
+            color: #c5d3ff;
         }
         
         .copyright {
-            margin-top: 50px;
-            font-size: 0.9rem;
-            color: rgba(255, 255, 255, 0.7);
+            margin-top: 40px;
+            text-align: center;
+            font-size: 0.85rem;
+            color: #718096;
+            padding-top: 20px;
+            border-top: 1px solid #edf2f7;
         }
         
-        .floating {
-            position: absolute;
-            opacity: 0.1;
-            z-index: -1;
+        /* 动画效果 */
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
         
-        .circle {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            background: var(--accent-color);
-            top: 10%;
-            right: 10%;
-            animation: float 15s infinite ease-in-out;
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
         
-        .square {
-            width: 100px;
-            height: 100px;
-            background: var(--secondary-color);
-            bottom: 15%;
-            left: 10%;
-            animation: float 12s infinite ease-in-out reverse;
-        }
-        
-        @keyframes float {
-            0%, 100% { transform: translate(0, 0) rotate(0deg); }
-            25% { transform: translate(20px, 20px) rotate(5deg); }
-            50% { transform: translate(0, 40px) rotate(0deg); }
-            75% { transform: translate(-20px, 20px) rotate(-5deg); }
+        .fade-in {
+            animation: fadeIn 0.5s ease forwards;
         }
         
         /* 响应式设计 */
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 2.5rem;
-            }
-            
-            .class-info {
-                font-size: 1.4rem;
-            }
-            
+        @media (max-width: 600px) {
             .container {
+                border-radius: 10px;
+            }
+            
+            #security-check, #graduation-content {
                 padding: 30px 20px;
             }
             
-            .decoration {
-                gap: 20px;
+            h1 {
+                font-size: 1.6rem;
             }
             
-            .cap, .scroll {
-                width: 60px;
-                height: 60px;
+            .graduation-header h1 {
+                font-size: 1.7rem;
+            }
+            
+            .photo-grid {
+                grid-template-columns: repeat(2, 1fr);
             }
         }
         
-        @media (max-width: 480px) {
+        @media (max-width: 400px) {
+            .lock-icon {
+                font-size: 3rem;
+            }
+            
             h1 {
-                font-size: 2rem;
+                font-size: 1.4rem;
             }
             
-            .class-info {
-                font-size: 1.2rem;
-            }
-            
-            .content {
-                font-size: 1rem;
+            .security-content, .validation-status {
+                padding: 20px 15px;
             }
         }
     </style>
 </head>
 <body>
-    <div class="floating circle"></div>
-    <div class="floating square"></div>
-    
     <div class="container">
-        <div class="header">
-            <h1>我们毕业啦！</h1>
-            <div class="class-info">六年级6班</div>
+        <!-- 安全验证界面 -->
+        <div id="security-check">
+            <div class="security-header">
+                <div class="lock-icon">
+                    <i class="fas fa-lock"></i>
+                </div>
+                <h1>检验您剪贴板里的秘钥</h1>
+                <p>Wenxiao Web</p>
+            </div>
+            
+            <div class="security-content">
+                <p>请放心 这只是一个离线界面</p>
+                <p>系统会自动检查剪贴板中是否包含正确的安全密钥</p>
+                
+                <div class="key-hint">
+                    <i class="fas fa-key"></i> 请同意访问剪贴板
+                </div>
+                
+                <div class="validation-status" id="validation-status">
+                    <i class="fas fa-spinner"></i> 正在检查剪贴板内容...
+                </div>
+                
+                <p><strong>提示：</strong> 请确保剪贴板中包含正确的安全密钥，然后刷新页面。</p>
+            </div>
+            
+            <div class="security-footer">
+                <p>© Wenxiao Web | 毕业典礼</p>
+            </div>
         </div>
         
-        <div class="content">
-            <p>时光荏苒，岁月如歌，六年的小学时光即将画上圆满的句号。</p>
-            <p>新的旅程即将开始，愿我们怀揣梦想，扬帆起航！</p>
-        </div>
-        
-        <div class="decoration">
-            <div class="cap"></div>
-            <div class="scroll"></div>
-        </div>
-        
-        <div class="copyright">
-            © Wenxiao Web Copyright
+        <!-- 毕业纪念内容（验证成功后显示） -->
+        <div id="graduation-content">
+            <div class="graduation-header">
+                <h1>我们毕业啦！</h1>
+                <div class="class-info">六年级6班 毕业典礼</div>
+            </div>
+            
+            <div class="memory-content">
+                <p>时光飞逝，六年的小学时光即将结束。在这段旅程中，我们一起学习、一起成长，留下了无数珍贵的回忆。</p>
+                <p>教室里的朗朗书声，操场上的欢声笑语，都是我们最宝贵的财富。</p>
+                <p>愿我们在未来的道路上继续努力，勇敢追梦！</p>
+            </div>
+            
+            <h3 style="text-align: center; margin-bottom: 20px; color: #2d3748;">
+                <i class="fas fa-camera"></i> 班级相册
+            </h3>
+            <div class="photo-grid">
+                <div class="photo-item"><i class="fas fa-user-graduate"></i></div>
+                <div class="photo-item"><i class="fas fa-user-graduate"></i></div>
+                <div class="photo-item"><i class="fas fa-user-graduate"></i></div>
+                <div class="photo-item"><i class="fas fa-user-graduate"></i></div>
+                <div class="photo-item"><i class="fas fa-user-graduate"></i></div>
+                <div class="photo-item"><i class="fas fa-user-graduate"></i></div>
+                <div class="photo-item"><i class="fas fa-user-graduate"></i></div>
+                <div class="photo-item"><i class="fas fa-user-graduate"></i></div>
+                <div class="photo-item"><i class="fas fa-user-graduate"></i></div>
+            </div>
+            
+            <div class="copyright">
+                © Wenxiao Web Copyright | 毕业典礼
+            </div>
         </div>
     </div>
-    
+
     <script>
-        // 添加微妙的鼠标移动效果
-        document.addEventListener('mousemove', (e) => {
-            const container = document.querySelector('.container');
-            const xAxis = (window.innerWidth / 2 - e.pageX) / 50;
-            const yAxis = (window.innerHeight / 2 - e.pageY) / 50;
-            container.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
-        });
+        // 安全密钥
+        const SECRET_KEY = "veceng.github.iomiyao";
         
-        // 添加标题动画
-        const h1 = document.querySelector('h1');
-        h1.innerHTML = h1.textContent.split('').map((char, i) => 
-            `<span style="opacity:0; animation:appear 0.5s ${i * 0.1 + 0.5}s forwards">${char}</span>`
-        ).join('');
-        
-        // 添加CSS动画
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes appear {
-                to { opacity: 1; }
+        // 检查剪贴板内容
+        async function checkClipboard() {
+            try {
+                // 尝试读取剪贴板内容
+                const text = await navigator.clipboard.readText();
+                const statusElement = document.getElementById('validation-status');
+                
+                if (text.includes(SECRET_KEY)) {
+                    // 验证成功
+                    statusElement.innerHTML = '<i class="fas fa-check-circle" style="color:#48bb78;"></i> 验证成功！正在进入...';
+                    
+                    // 显示毕业内容
+                    setTimeout(() => {
+                        document.getElementById('security-check').style.display = 'none';
+                        const content = document.getElementById('graduation-content');
+                        content.style.display = 'block';
+                        content.classList.add('fade-in');
+                    }, 1000);
+                } else {
+                    // 验证失败
+                    statusElement.innerHTML = '<i class="fas fa-times-circle" style="color:#e53e3e;"></i> 未检测到有效密钥';
+                    statusElement.innerHTML += '<p style="margin-top:10px;font-size:0.9rem;">请确保剪贴板中包含正确的安全密钥</p>';
+                }
+            } catch (err) {
+                // 处理剪贴板访问错误
+                const statusElement = document.getElementById('validation-status');
+                statusElement.innerHTML = '<i class="fas fa-exclamation-triangle" style="color:#dd6b20;"></i> 无法访问剪贴板';
+                statusElement.innerHTML += '<p style="margin-top:10px;font-size:0.9rem;">请在此页面点击一次后重试</p>';
+                
+                // 添加点击事件以重新尝试
+                document.body.addEventListener('click', async () => {
+                    statusElement.innerHTML = '<i class="fas fa-spinner"></i> 重新尝试中...';
+                    setTimeout(checkClipboard, 800);
+                }, { once: true });
             }
-        `;
-        document.head.appendChild(style);
+        }
+        
+        // 页面加载时检查剪贴板
+        document.addEventListener('DOMContentLoaded', () => {
+            setTimeout(checkClipboard, 1000);
+        });
     </script>
 </body>
 </html>
